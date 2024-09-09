@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Resume Builder</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="head"><h1>Dynamic Resume Builder</h1> <H5>BY AREEBA BANO</H5></header>
+    
+    <!-- form fields -->
+    <form id="form">
+        <!-- personal information section-->
+      <section id="personal-info">
+        <h2>Personal Information</h2>
+        <!-- name  -->
+        <label for="name"><b>Name:</b></label>
+        <input type="text" id="name" placeholder="Name" required>
+        <!-- email  -->
+        <label for="email"><b>Email:</b></label>
+        <input type="email" id="email" placeholder="Email" required>
+        <!-- contact  -->
+        <label for="contact"><b>contact:</b></label>
+        <input type="number" id="contact" placeholder="Contact" required>
+        <!-- portfolio website  -->
+        <label for="portfolio"><b>Portfolio URL:</b></label>
+        <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com" />
+        <!-- linkedin profile  -->
+        <label for="linkedin"><b>LinkedIn URL:</b></label>
+        <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" />
+        <!-- profile pic  -->
+        <label for="profile-pic"><b>Profile Picture:</b></label>
+        <input type="file" id="profile-picture" accept="image/*" height="48" width="48"/>
+      </section>
+
+       <!-- Education section -->
+      <section id="education">
+        <h2>Education</h2>
+        <label for="degree"><b>Degree:</b></label>
+        <input type="text" id="degree" placeholder="Degree" required>
+        <label for="institution"><b>Institution:</b></label>
+        <input type="text" id="institution" placeholder="Institution" required>
+        <label for="year"><b>Year of Compeletion:</b></label>
+        <input type="text" id="year" placeholder="Year" required>
+      </section>
+
+         <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+          <div id="skills-container">
+         <label for="skill"><b>Skill:</b></label>
+           <input type="text" id="skill" placeholder="Skill" required>
+          </div>
+         <button type="button" id="add-skill" class="skills-button">Add Skills</button>
+       </section> 
+
+      <!-- Work Experience Section -->
+      <section id="work-experience">
+        <h2>Work Experience</h2>
+        <label for="job"><b>Job Title:</b></label>
+        <input type="text" id="job-title" placeholder="Job Title" required>
+        <label for="Company"><b>Company:</b></label>
+        <input type="text" id="company-name" placeholder="Company" required>
+        <label for="start"><b>Start Date:</b></label>
+        <input type="date" id="start-date" required>
+        <label for="end"><b>End Date:</b></label>
+        <input type="date" id="end-date" required>      
+      </section>
+
+
+      <!-- submit button -->
+     
+      <button type="submit" class="generate-resume" onclick="createResume()"><b><i>Generate Resume</i></b></button>
+      <button type="button" class="generate-resume-url" onclick="generateResumeUrl()">Generate Resume URL</button>
+
+    </form>
+
+
+<!-- Generated Resume Output -->
+<div id="resume-output" class="resume">
+  <!-- <h2 id="resume-name"></h2> -->
+  
+  <!-- Personal Information Section -->
+  <div class="resume-section">
+      <h3>Personal Information</h3>
+      <img class="profile-image" id="resume-profile-pic" alt="Profile Picture">
+      <p><strong>Name:</strong> <span id="resume-name" contenteditable="true"></span></p>
+      <p><strong>Email:</strong> <span id="resume-email" contenteditable="true"></span></p>
+      <p><strong>Contact:</strong> <span id="resume-contact" contenteditable="true"></span></p>
+      <p><strong>Portfolio:</strong> <span id="resume-portfolio" contenteditable="true"></span></p>
+      <p><strong>LinkedIn:</strong> <span id="resume-linkedin" contenteditable="true"></span></p>
+  </div>
+
+  <!-- Education Section -->
+  <div class="resume-section">
+      <h3>Education</h3>
+      <p><strong>Degree:</strong> <span id="resume-degree" contenteditable="true"></span></p>
+      <p><strong>Institution:</strong> <span id="resume-institution" contenteditable="true"></span></p>
+      <p><strong>Graduation Date:</strong> <span id="resume-year" contenteditable="true"></span></p>
+  </div>
+
+  <!-- Skills Section -->
+  <div class="resume-section">
+    <h3>Skills</h3>
+    <ul id="resume-skill-list" contenteditable="true"></ul>
+</div>
+
+  <!-- Work Experience Section -->
+  <div class="resume-section">
+      <h3>Work Experience</h3>
+      <p><strong>Job Title:</strong> <span id="resume-job-title" contenteditable="true"></span></p>
+      <p><strong>Company:</strong> <span id="resume-company-name" contenteditable="true"></span></p>
+      <p><strong>Start Date:</strong> <span id="resume-start-date" contenteditable="true"></span></p>
+      <p><strong>End Date:</strong> <span id="resume-end-date" contenteditable="true"></span></p>
+      <p id="generatedUrl"></p>
+  </div>
+
+  <!-- <button id="generatedLink" onclick="printResume()"><b><i>Generate Resume URL</i></b></button> -->
+  <button id="download-button" onclick="printResume()"><b><i>Download as PDF</i></b></button>
+</div>
+    
+    <p id="generatedUrl"></p>
+    <script src="./index.js"></script>
+  </body>
+</html>
