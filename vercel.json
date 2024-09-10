@@ -2,12 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.ts",
-      "use": "@vercel/node"
-    },
-    {
       "src": "public/index.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "public/index.ts",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "public"
+      }
     }
   ],
   "routes": [
@@ -17,3 +20,4 @@
     }
   ]
 }
+
