@@ -251,28 +251,69 @@
     return isValid;
   };
 
-  function generateResumeUrl() {
-    const nameInput = document.getElementById('name') as HTMLInputElement;
-    const generatedUrl = document.getElementById('generatedUrl') as HTMLParagraphElement;
+// Function to generate a resume URL and display it
+function generateResumeUrl(): void {
+  const form = document.getElementById('form') as HTMLFormElement | null;
+  const nameInput = document.getElementById('name') as HTMLInputElement | null;
+  const generatedUrl = document.getElementById('generatedUrl') as HTMLParagraphElement | null;
 
-    const userName = nameInput?.value.trim();
-    if (userName) {
-        const userUrl = `${window.location.origin}/resume.html?name=${encodeURIComponent(userName)}`;
-        generatedUrl.innerHTML = `Your unique resume URL: <a href="${userUrl}" target="_blank">${userUrl}</a>`;
-    }
+  if (form && nameInput && generatedUrl) {
+      form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const userName = nameInput.value.trim();
+          if (userName) {
+              const userUrl = `${window.location.origin}/resume/${encodeURIComponent(userName)}`;
+              generatedUrl.innerHTML = `Your unique resume URL: <a href="${userUrl}" target="_blank">${userUrl}</a>`;
+          }
+      });
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const name = params.get('name');
+// Function to handle URL parameters
+function handleUrlParameters(): void {
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('name');
 
-    if (name) {
-        const resumeContent = document.getElementById('resumeContent');
-        if (resumeContent) {
-            resumeContent.innerHTML = `<h2>Resume for ${decodeURIComponent(name)}</h2>`;
-            // You can add more content or fetch additional data based on the name.
-        }
-    }
+  if (name) {
+      const nameDecoded = decodeURIComponent(name);
+      const resumeUrl = document.getElementById('generatedUrl') as HTMLParagraphElement | null;
+      if (resumeUrl) {
+          resumeUrl.innerHTML = `<h2>${nameDecoded}'s Resume</h2>`;
+      }
+  }
+}
+
+// Initialize functions
+document.addEventListener('DOMContentLoaded', () => {
+  generateResumeUrl();
+  handleUrlParameters();
 });
+
+
+//   function generateResumeUrl() {
+//     const nameInput = document.getElementById('name') as HTMLInputElement;
+//     const generatedUrl = document.getElementById('generatedUrl') as HTMLParagraphElement;
+
+//     const userName = nameInput?.value.trim();
+//     if (userName) {
+//         const userUrl = `${window.location.origin}/resume.html?name=${encodeURIComponent(userName)}`;
+//         generatedUrl.innerHTML = `Your unique resume URL: <a href="${userUrl}" target="_blank">${userUrl}</a>`;
+//     }
+// }
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const params = new URLSearchParams(window.location.search);
+//     const name = params.get('name');
+
+//     if (name) {
+//         const resumeContent = document.getElementById('resumeContent');
+//         if (resumeContent) {
+//             resumeContent.innerHTML = `<h2>Resume for ${decodeURIComponent(name)}</h2>`;
+//             // You can add more content or fetch additional data based on the name.
+//         }
+//     }
+// });
+
 
 
